@@ -1,6 +1,6 @@
 __pycache__
-telegram
-command
+libs
+controller
 game
-config.py
 maincopy.py
+telegram
