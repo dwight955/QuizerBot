@@ -1,14 +1,12 @@
 
 #1822798056
 from controller.handler.handler_command import UserContext
-from main import *
 from generalVariable.variable import Variable
+from main import *
 
 async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Sends a predefined poll"""
-    print("===2=========")
-    print(str(update))
-    Variable.answer_complete["chat_id"] = update.effective_chat.id
+
     questions = ["JavaScript","REACT","CSS","HTML"]
     message = await context.bot.send_poll(
         update.effective_chat.id,
@@ -17,5 +15,5 @@ async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         is_anonymous=False,
         allows_multiple_answers=True,
     )
-    # global save_event_game
-    UserContext.save_event_game = [update, context]
+    # # global save_event_game
+    # UserContext.save_event_game = [update, context]
