@@ -1,2 +1,9 @@
+from telegram import Update
+from telegram.ext import ContextTypes
 class Variable:
-    answer_complete = {"puntos": 0, "complete": 0, "chat_id": 0}
+    currentContext = {
+        "typeGame": "pool",
+        "update": Update,
+        "context": ContextTypes.DEFAULT_TYPE,
+        "chat_id": 0
+    }
