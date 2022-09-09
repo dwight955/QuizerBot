@@ -16,7 +16,7 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 
     if current_data["typeGame"] == "quiz":
-        Variable.gameData["gamePlayed"]["quiz"] = (Variable.gameData["gamePlayed"]["quiz"]) + 1
+        Variable.gameData["gamePlayed"]["quiz"] += 1
         reward_game = ["🧶", "🎄", "🎎", "🎫", "🎟", "🎨", "🥽", "‍🎭", "‍🎪", "‍🎃", "‍👕", "🎑", "💎", "⚽", "🏀"]
         correct_answer = question_game_quiz[current_data["game_id"]]["correct_answer"]
 
