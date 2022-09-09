@@ -1,5 +1,5 @@
 
-question_game_quiz = [
+question_game_poll = [
     {
         "question": "¿0 CUAL ES LA PREGUNTA?",
         "options": ["A","B","C","D"],
@@ -8,64 +8,64 @@ question_game_quiz = [
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿1 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿1 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿2 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿2 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿3 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿3 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿4 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿4 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿5 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿5 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿6 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿6 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿7 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿7 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿8 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿8 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
     {
-        "questionTitle": "¿9 CUAL ES LA PREGUNTA?",
-        "questionOption": ["A","B","C","D"],
+        "question": "¿9 CUAL ES LA PREGUNTA?",
+        "options": ["A","B","C","D"],
         "correct_answer": [1,2,3],
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
