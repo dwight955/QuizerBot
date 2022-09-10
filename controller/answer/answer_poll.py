@@ -14,12 +14,12 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     current_data = Variable.currentContext
     game_data = Variable.gameData
     #increase count gaem
-
-
     if current_data["typeGame"] == "poll":
         Variable.gameData["gamePlayed"]["poll"] += 1
+
         # reward_game = ["🎁", "✨", "🐱", "👤", "🎶", "🌹", "💖", "‍🏍", "‍👓", "‍🚀", "‍🐉", "👏", "👍", "👌", "💕"]
         reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+
         correct_answer = question_game_poll[current_data["game_id"]]["index_correct_answer"]
 
         if answer.option_ids == correct_answer:
@@ -33,8 +33,6 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
                 await data_save(reward, current_data["chat_id"])
 
             print(f"La respuesta: {answer.option_ids} & {correct_answer}, son iguales")
-
-
 
     # chat_id = answer.user.id
     # correctAnswer = answer.option_ids
