@@ -1,6 +1,5 @@
-__pycache__
 telegram
-command
-game
-config.py
+__pycache__
+libs
 maincopy.py
+.idea
