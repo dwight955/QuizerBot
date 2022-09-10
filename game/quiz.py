@@ -14,7 +14,7 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             question_game_quiz[whatQuestion]["question"],
             question_game_quiz[whatQuestion]["options"],
             type=Poll.QUIZ,
-            correct_option_id=question_game_quiz[whatQuestion]["correct_answer"],
+            correct_option_id=question_game_quiz[whatQuestion]["index_correct_answer"],
             explanation=question_game_quiz[whatQuestion]["explanation"]
         )
     else:

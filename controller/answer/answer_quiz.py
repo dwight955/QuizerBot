@@ -17,7 +17,7 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     if current_data["typeGame"] == "quiz":
         Variable.gameData["gamePlayed"]["quiz"] += 1
         reward_game = ["🧶", "🎄", "🎎", "🎫", "🎟", "🎨", "🥽", "‍🎭", "‍🎪", "‍🎃", "‍👕", "🎑", "💎", "⚽", "🏀"]
-        correct_answer = question_game_quiz[current_data["game_id"]]["correct_answer"]
+        correct_answer = question_game_quiz[current_data["game_id"]]["index_correct_answer"]
 
         if answer.poll.options[correct_answer]["voter_count"] == 1:
             game_data["points"] += 5

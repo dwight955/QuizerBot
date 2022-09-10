@@ -1,4 +1,4 @@
-
+import random
 question_game_poll = [
     {
         "question": "¿0 CUAL ES LA PREGUNTA?",
@@ -71,3 +71,5 @@ question_game_poll = [
         "allowsMultipleAnswers": True
     },
 ]
+random.shuffle(question_game_poll)
+question_game_quiz = question_game_poll

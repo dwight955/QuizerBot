@@ -14,9 +14,9 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     game_data = Variable.gameData
     #increase count gaem
     if current_data["typeGame"] == "poll":
-        Variable.gameData["gamePlayed"]["poll"] = (Variable.gameData["gamePlayed"]["poll"]) + 1
+        Variable.gameData["gamePlayed"]["poll"] += 1
         reward_game = ["🎁", "✨", "🐱", "👤", "🎶", "🌹", "💖", "‍🏍", "‍👓", "‍🚀", "‍🐉", "👏", "👍", "👌", "💕"]
-        correct_answer = question_game_poll[current_data["game_id"]]["correct_answer"]
+        correct_answer = question_game_poll[current_data["game_id"]]["index_correct_answer"]
 
         if answer.option_ids == correct_answer:
             game_data["points"] += 5
