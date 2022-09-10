@@ -18,10 +18,6 @@ async def save_user(id_user) -> bool:
         return False
     return True
 
-file = open("userReward.txt", "rt")
-print(file.read())
-
-
 async def data_save(reward, id_user):
     file = open("game/database/userReward.txt", "rt")
     txt = file.read()
