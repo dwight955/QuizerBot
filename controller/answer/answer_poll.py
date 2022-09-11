@@ -7,6 +7,9 @@ from generalVariable.variable import Variable
 from game.database.dbReward import (save_user, data_save)
 from main import *
 import random
+from game.database.dbData import (get_user_data, set_user_data)
+
+
 async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Summarize a users poll vote"""
     answer = update.poll_answer
@@ -16,6 +19,12 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     #increase count gaem
     if current_data["typeGame"] == "poll":
         Variable.gameData["gamePlayed"]["poll"] += 1
+        dict_get_data_user = (get_user_data(current_data["chat_id"]))
+        count_questions_answered = dict_get_data_user["questions_answered"] + 1
+        # print(count_questions_answered)
+        set_user_data(current_data["chat_id"], "questions_answered", count_questions_answered)
+        # none_user_data = set_user_data(current_data["chat_id"], "points", 10)
+
 
         # reward_game = ["🎁", "✨", "🐱", "👤", "🎶", "🌹", "💖", "‍🏍", "‍👓", "‍🚀", "‍🐉", "👏", "👍", "👌", "💕"]
         reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
@@ -24,6 +33,9 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         if answer.option_ids == correct_answer:
             game_data["points"] += 5
+            count_win_points = dict_get_data_user["points"] + 5
+            set_user_data(current_data["chat_id"], "points", count_win_points)
+
             reward = reward_game[random.randint(0, len(reward_game)-1)]
             game_data["reward"].append(reward)
 
@@ -32,11 +44,11 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
             else:
                 await data_save(reward, current_data["chat_id"])
 
-            print(f"La respuesta: {answer.option_ids} & {correct_answer}, son iguales")
+            # print(f"La respuesta: {answer.option_ids} & {correct_answer}, son iguales")
 
     # chat_id = answer.user.id
     # correctAnswer = answer.option_ids
-    print(game_data)
+    # print(game_data)
 
     #answer.option_ids = Option selected by the user
     #await finishGame(update, context) Game finished
