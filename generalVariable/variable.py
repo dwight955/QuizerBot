@@ -11,7 +11,7 @@ class Variable:
     gameData = {
         "points": 0,
         "reward": [],
-        "gamePlayed": {"poll": 8, "quiz": 0}
+        "gamePlayed": {"poll": 4, "quiz": 0}
     }
 # print("Reward: " + str(Variable.dataGame["reward"]))
 async def setCurrentContext(typeGame, update, context, chat_id, game_id, dict):
