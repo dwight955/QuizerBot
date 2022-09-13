@@ -21,8 +21,6 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             open_period=10,
             pool_timeout=5000
         )
-        print(message.poll.id)
-        await context.bot.data
     else:
         await context.bot.send_message(update.effective_chat.id,
                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
