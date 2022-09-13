@@ -16,6 +16,7 @@ async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             question_game_poll[whatQuestion]["options"],
             is_anonymous=question_game_poll[whatQuestion]["voteAnonymous"],
             allows_multiple_answers=question_game_poll[whatQuestion]["allowsMultipleAnswers"],
+            open_period=10
         )
     else:
         await context.bot.send_message(update.effective_chat.id,
