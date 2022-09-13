@@ -1,5 +1,4 @@
 telegram
 __pycache__
-libs
-maincopy.py
 .idea
+thread-example.py
