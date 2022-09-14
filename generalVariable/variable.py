@@ -13,6 +13,7 @@ class Variable:
         "reward": [],
         "gamePlayed": {"poll": 4, "quiz": 0}
     }
+    is_request = False
 # print("Reward: " + str(Variable.dataGame["reward"]))
 async def setCurrentContext(typeGame, update, context, chat_id, game_id, dict):
     dict["typeGame"] = typeGame
@@ -20,5 +21,4 @@ async def setCurrentContext(typeGame, update, context, chat_id, game_id, dict):
     dict["context"] = context
     dict["chat_id"] = chat_id
     dict["game_id"] = game_id
-
     # print(Variable.currentContext["update"])
