@@ -1,5 +1,3 @@
-
-#1822798056
 from controller.handler.handler_command import UserContext
 from generalVariable.variable import (Variable, set_current_context)
 from main import *
