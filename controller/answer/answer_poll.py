@@ -21,8 +21,13 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
         Variable.gameData["gamePlayed"]["poll"] += 1
         dict_get_data_user = (get_user_data(current_data["chat_id"]))
         count_questions_answered = dict_get_data_user["questions_answered"] + 1
+        count_polls_answered = dict_get_data_user["polls_answered"] + 1
+        data_to_modify = {
+            "questions_answered": count_questions_answered,
+            "polls_answered": count_polls_answered
+        }
         # print(count_questions_answered)
-        set_user_data(current_data["chat_id"], "questions_answered", count_questions_answered)
+        set_user_data(current_data["chat_id"], data_to_modify, count_questions_answered)
         # none_user_data = set_user_data(current_data["chat_id"], "points", 10)
 
 
@@ -32,17 +37,13 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
         correct_answer = question_game_poll[current_data["game_id"]]["index_correct_answer"]
 
         if answer.option_ids == correct_answer:
-            game_data["points"] += 5
+            # game_data["points"] += 5
             count_win_points = dict_get_data_user["points"] + 5
             set_user_data(current_data["chat_id"], "points", count_win_points)
 
             reward = reward_game[random.randint(0, len(reward_game)-1)]
             game_data["reward"].append(reward)
-
-            if (await save_user(current_data["chat_id"])):
-                await data_save(reward, current_data["chat_id"])
-            else:
-                await data_save(reward, current_data["chat_id"])
+            await data_save(reward, current_data["chat_id"])
 
             # print(f"La respuesta: {answer.option_ids} & {correct_answer}, son iguales")
 

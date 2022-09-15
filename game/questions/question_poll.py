@@ -71,5 +71,6 @@ question_game_poll = [
         "allowsMultipleAnswers": True
     },
 ]
-random.shuffle(question_game_poll)
-question_game_quiz = question_game_poll
+# random.shuffle(question_game_poll)
+# question_game_poll = question_game_poll
+# print(question_game_poll)

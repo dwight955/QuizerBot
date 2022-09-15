@@ -1,7 +1,0 @@
-questions_answered1822698056:10,
-points1822698056:10,
-questions_answered1822728056:16043,
-points1822728056:111,
-questions_answered1224068050:6,
-points1224068050:16,questions_answered1224068050:0
-points1224068050:0
