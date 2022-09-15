@@ -7,12 +7,10 @@ from generalVariable.variable import (Variable, setCurrentContext)
 from game.time_answer import run_period_open_answer
 from game.questions.question_quiz import question_game_quiz
 from generalVariable.constant import CONSTANT
-import threading
-# t1 declarado para ser usado en otros partes del codigo
-t1 = threading.Thread
+from threading import Timer
+
 async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a predefined poll"""
-    global t1
     # Se reinicia la variable is_request
     if Variable.is_request: Variable.is_request = False
 
@@ -33,16 +31,19 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
     await setCurrentContext("quiz", update, context, update.message.chat.id, whatQuestion, Variable.currentContext)
     # Se crea el hilo
-    t1 = threading.Thread(target=between_callback)
+    #t1 = threading.Timer(10, run_period_open_answer)
+    await asyncio.sleep(10, run_period_open_answer)
+    print("Se ejecuto")
     # Se inicia el hilo
-    t1.start()
-
-def between_callback()->None:
+    #t1.start()
+    #Variable.timer = t1
+"""def between_callback()->None:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-
     loop.run_until_complete(run_period_open_answer())
-    if(loop.is_running()):
-        loop.close()
-    else:
-        print("El loop esta muerto")
+    loop.close()"""
+def run_period_open_answer()->None:
+    print("Se acabo el tiempo")
+
+"""async def funcion_test()->None:
+    await quiz(Variable.currentContext["update"], Variable.currentContext["context"])"""
