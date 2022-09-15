@@ -21,6 +21,7 @@ application.add_handler(CommandHandler('poll', poll))
 application.add_handler(CommandHandler('quiz', quiz))
 
 application.add_handler(PollHandler(receive_quiz_answer))
+
 application.add_handler(PollAnswerHandler(receive_poll_answer))
 
 echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)

@@ -61,5 +61,5 @@ question_game_quiz = [
         "explanation": "Pregunta en el bombillito"
     }
 ]
-random.shuffle(question_game_quiz)
-question_game_quiz = question_game_quiz
+# random.shuffle(question_game_quiz)
+# question_game_quiz = question_game_quiz

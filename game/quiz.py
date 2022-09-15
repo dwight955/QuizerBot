@@ -1,12 +1,20 @@
 
 from controller.handler.handler_command import UserContext
 from main import *
-from generalVariable.variable import (Variable, setCurrentContext)
+from generalVariable.variable import (Variable, set_current_context)
 from game.questions.question_quiz import question_game_quiz
+from game.database.dbData import get_user_data
 
 async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a predefined poll"""
+    await set_current_context("quiz", update, context, update.message.chat.id, Variable.currentContext)
+
+    user_data = get_user_data(Variable.currentContext["chat_id"])
+    Variable.gameData["gamePlayed"]["quiz"] = user_data["quizs_answered"]
+
     whatQuestion = Variable.gameData["gamePlayed"]["quiz"]
+
+    Variable.currentContext["game_id"] = whatQuestion
 
     if Variable.gameData["gamePlayed"]["quiz"] <= (len(question_game_quiz)-1):
         # questions = ["24 DE ENERO DE 1844", "04 DE ENERO DE 1834", "27 DE MAYO DEL 1846", "27 DE FEBRERO DE 1844"]
@@ -25,4 +33,3 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # print("===1=========")
     # print(str(UserContext.save_event_game))
     # print(update)
-    await setCurrentContext("quiz", update, context, update.message.chat.id, whatQuestion, Variable.currentContext)
