@@ -22,7 +22,7 @@ class Variable:
     is_request = False
     timer = threading
 # print("Reward: " + str(Variable.dataGame["reward"]))
-async def setCurrentContext(typeGame, update, context, chat_id, game_id, dict):
+async def set_current_context(typeGame, update, context, chat_id, dict):
     dict["typeGame"] = typeGame
     dict["update"] = update
     dict["context"] = context

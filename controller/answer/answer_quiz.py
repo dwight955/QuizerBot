@@ -14,7 +14,7 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     answer = update
     # Indicador de que el usuario respondio
     Variable.timer.cancel()
-    print("Se cancelo")
+    print("Se cancelo el tiempo")
     # Datos actuales del juego
     current_data = Variable.currentContext
     game_data = Variable.gameData
