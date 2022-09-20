@@ -31,19 +31,11 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
     await setCurrentContext("quiz", update, context, update.message.chat.id, whatQuestion, Variable.currentContext)
     # Se crea el hilo
-    #t1 = threading.Timer(10, run_period_open_answer)
-    await asyncio.sleep(10, run_period_open_answer)
-    print("Se ejecuto")
-    # Se inicia el hilo
-    #t1.start()
-    #Variable.timer = t1
-"""def between_callback()->None:
+    t1 = threading.Timer(10, between_callback)
+    Variable.timer = t1
+    t1.start()
+
+def between_callback()->None:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     loop.run_until_complete(run_period_open_answer())
-    loop.close()"""
-def run_period_open_answer()->None:
-    print("Se acabo el tiempo")
-
-"""async def funcion_test()->None:
-    await quiz(Variable.currentContext["update"], Variable.currentContext["context"])"""

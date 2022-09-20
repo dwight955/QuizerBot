@@ -13,7 +13,8 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     """Close quiz after three participants took it"""
     answer = update
     # Indicador de que el usuario respondio
-    # Variable.timer.cancel()
+    Variable.timer.cancel()
+    print("Se cancelo")
     # Datos actuales del juego
     current_data = Variable.currentContext
     game_data = Variable.gameData
