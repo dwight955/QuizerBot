@@ -25,15 +25,21 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
         dict_get_data_user = (get_user_data(current_data["chat_id"]))
         count_questions_answered = dict_get_data_user["questions_answered"] + 1
+        count_quizs_answered = dict_get_data_user["quizs_answered"] + 1
         # print(count_questions_answered)
-        set_user_data(current_data["chat_id"], "questions_answered", count_questions_answered)
+        data_to_modify = {
+            "questions_answered": count_questions_answered,
+            "quizs_answered": count_quizs_answered
+        }
+
+        set_user_data(current_data["chat_id"], data_to_modify, count_questions_answered)
 
         # reward_game = ["🧶", "🎄", "🎎", "🎫", "🎟", "🎨", "🥽", "‍🎭", "‍🎪", "‍🎃", "‍👕", "🎑", "💎", "⚽", "🏀"]
         reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
         correct_answer = question_game_quiz[current_data["game_id"]]["index_correct_answer"]
 
         if answer.poll.options[correct_answer]["voter_count"] == 1:
-            game_data["points"] += 5
+            # game_data["points"] += 5
             count_win_points = dict_get_data_user["points"] + 5
             set_user_data(current_data["chat_id"], "points", count_win_points)
 
@@ -41,13 +47,9 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
             reward = reward_game[random.randint(0, len(reward_game)-1)]
             game_data["reward"].append(reward)
+            await data_save(reward, current_data["chat_id"])
 
-            if (await save_user(current_data["chat_id"])):
-                await data_save(reward, current_data["chat_id"])
-            else:
-                await data_save(reward, current_data["chat_id"])
-
-            print(f"La respuesta: {answer.poll.options[correct_answer]['voter_count']} & 1, son iguales")
+            # print(f"La respuesta: {answer.poll.options[correct_answer]['voter_count']} & 1, son iguales")
 
     await quiz(Variable.currentContext["update"],Variable.currentContext["context"])
     #answer.option_ids = Option selected by the user

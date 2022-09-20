@@ -14,7 +14,10 @@ class Variable:
     gameData = {
         "points": 0,
         "reward": [],
-        "gamePlayed": {"poll": 4, "quiz": 0}
+        "gamePlayed": {
+            "poll": 0,
+            "quiz": 0
+        }
     }
     is_request = False
     timer = threading
@@ -24,5 +27,6 @@ async def setCurrentContext(typeGame, update, context, chat_id, game_id, dict):
     dict["update"] = update
     dict["context"] = context
     dict["chat_id"] = chat_id
-    dict["game_id"] = game_id
+    Variable().currentContext["chat_id"] = dict["chat_id"]
+
     # print(Variable.currentContext["update"])

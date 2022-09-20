@@ -12,7 +12,7 @@ async def save_user(id_user) -> bool:
             file_reward.write(formate_txt_reward)
 
             file_data = open("game/database/userData.txt", "a")
-            formate_txt_reward = f"questions_answered{id_user}:0\npoints{id_user}:0\n"
+            formate_txt_reward = f"questions_answered{id_user}:0,\npoints{id_user}:0,\npolls_answered{id_user}:0,\nquizs_answered{id_user}:0,\n"
             file_data.write(formate_txt_reward)
 
         except:
