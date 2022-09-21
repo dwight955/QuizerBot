@@ -1,5 +1,3 @@
-
-from controller.handler.handler_command import UserContext
 from main import *
 from generalVariable.variable import (Variable, set_current_context)
 from game.questions.question_quiz import question_game_quiz
