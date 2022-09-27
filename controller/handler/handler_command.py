@@ -15,11 +15,12 @@ from controller.answer.answer_quiz import *
 
 from game.poll import poll
 from game.quiz import quiz
+# from game.quiz import button
 
 application.add_handler(CommandHandler('start', start))
 application.add_handler(CommandHandler('poll', poll))
 application.add_handler(CommandHandler('quiz', quiz))
-
+# application.add_handler(CallbackQueryHandler(button))
 application.add_handler(PollHandler(receive_quiz_answer))
 
 application.add_handler(PollAnswerHandler(receive_poll_answer))

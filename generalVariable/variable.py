@@ -16,6 +16,7 @@ class Variable:
             "quiz": 0
         }
     }
+    tiempo = False
 # print("Reward: " + str(Variable.dataGame["reward"]))
 async def set_current_context(typeGame, update, context, chat_id, dict):
     dict["typeGame"] = typeGame

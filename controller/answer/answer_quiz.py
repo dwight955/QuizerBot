@@ -1,5 +1,5 @@
 
-from controller.handler.handler_command import UserContext
+
 from main import *
 from generalVariable.variable import Variable
 from controller.handler.gameFinish import finishGame
@@ -11,14 +11,19 @@ import random
 async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Close quiz after three participants took it"""
     answer = update
-
+    print(context.bot)
     current_data = Variable.currentContext
     game_data = Variable.gameData
     #increase count gaem
+    # update = update
+    print(current_data["context"].message)
+
+    # from tiemp import unset
+    # await unset(update, context)
 
     if current_data["typeGame"] == "quiz":
         Variable.gameData["gamePlayed"]["quiz"] += 1
-
+        Variable.tiempo = True
         dict_get_data_user = (get_user_data(current_data["chat_id"]))
         count_questions_answered = dict_get_data_user["questions_answered"] + 1
         count_quizs_answered = dict_get_data_user["quizs_answered"] + 1
