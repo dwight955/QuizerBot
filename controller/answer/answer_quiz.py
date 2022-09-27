@@ -1,29 +1,28 @@
 
-
+from controller.handler.handler_command import UserContext
 from main import *
-from generalVariable.variable import Variable
+from game.quiz import *
+from generalVariable.variable import (Variable)
 from controller.handler.gameFinish import finishGame
 from game.questions.question_quiz import question_game_quiz
 from game.database.dbReward import (save_user, data_save)
 from game.database.dbData import (get_user_data, set_user_data)
 import random
-
+import threading
 async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Close quiz after three participants took it"""
     answer = update
-    print(context.bot)
+    # Indicador de que el usuario respondio
+    Variable.timer.cancel()
+    print("Se cancelo el tiempo")
+    # Datos actuales del juego
     current_data = Variable.currentContext
     game_data = Variable.gameData
     #increase count gaem
-    # update = update
-    print(current_data["context"].message)
-
-    # from tiemp import unset
-    # await unset(update, context)
 
     if current_data["typeGame"] == "quiz":
         Variable.gameData["gamePlayed"]["quiz"] += 1
-        Variable.tiempo = True
+
         dict_get_data_user = (get_user_data(current_data["chat_id"]))
         count_questions_answered = dict_get_data_user["questions_answered"] + 1
         count_quizs_answered = dict_get_data_user["quizs_answered"] + 1
@@ -52,9 +51,7 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
             # print(f"La respuesta: {answer.poll.options[correct_answer]['voter_count']} & 1, son iguales")
 
-
-    # print(game_data)
-
+    await quiz(Variable.currentContext["update"],Variable.currentContext["context"])
     #answer.option_ids = Option selected by the user
     #await finishGame(update, context) Game finished
 

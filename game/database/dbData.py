@@ -1,6 +1,5 @@
 from generalVariable.constant import CONSTANT
 
-
 def get_user_data(id_user) -> dict:
     list_keyword = ["questions_answered", "points", "polls_answered", "quizs_answered"]
     if __name__ == "__main__":
