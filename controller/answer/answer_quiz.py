@@ -1,53 +1,36 @@
-
-from controller.handler.handler_command import UserContext
 from main import *
-from generalVariable.variable import Variable
-from controller.handler.gameFinish import finishGame
+from game.quiz import *
 from game.questions.question_quiz import question_game_quiz
-from game.database.dbReward import (save_user, data_save)
+from game.database.dbReward import data_save
 from game.database.dbData import (get_user_data, set_user_data)
 import random
-
+from game.database.userId import get_user_id
 async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Close quiz after three participants took it"""
     answer = update
 
-    current_data = Variable.currentContext
-    game_data = Variable.gameData
-    #increase count gaem
+    user_id = get_user_id(update.poll.explanation[-7:])
 
-    if current_data["typeGame"] == "quiz":
-        Variable.gameData["gamePlayed"]["quiz"] += 1
+    dict_get_data_user = (get_user_data(user_id))
+    count_questions_answered = dict_get_data_user["questions_answered"] + 1
+    count_quizs_answered = dict_get_data_user["quizs_answered"] + 1
 
-        dict_get_data_user = (get_user_data(current_data["chat_id"]))
-        count_questions_answered = dict_get_data_user["questions_answered"] + 1
-        # print(count_questions_answered)
-        set_user_data(current_data["chat_id"], "questions_answered", count_questions_answered)
+    data_to_modify = {
+        "questions_answered": count_questions_answered,
+        "quizs_answered": count_quizs_answered
+    }
 
-        # reward_game = ["🧶", "🎄", "🎎", "🎫", "🎟", "🎨", "🥽", "‍🎭", "‍🎪", "‍🎃", "‍👕", "🎑", "💎", "⚽", "🏀"]
-        reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
-        correct_answer = question_game_quiz[current_data["game_id"]]["index_correct_answer"]
+    set_user_data(user_id, data_to_modify, count_questions_answered)
 
-        if answer.poll.options[correct_answer]["voter_count"] == 1:
-            game_data["points"] += 5
-            count_win_points = dict_get_data_user["points"] + 5
-            set_user_data(current_data["chat_id"], "points", count_win_points)
+    reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 
-            game_data["reward"].append(reward_game[random.randint(0, len(reward_game)-1)])
+    correct_answer = question_game_quiz[dict_get_data_user["quizs_answered"]]["index_correct_answer"]
 
-            reward = reward_game[random.randint(0, len(reward_game)-1)]
-            game_data["reward"].append(reward)
+    if answer.poll.options[correct_answer]["voter_count"] == 1:
+        count_win_points = dict_get_data_user["points"] + 5
+        set_user_data(user_id, "points", count_win_points)
 
-            if (await save_user(current_data["chat_id"])):
-                await data_save(reward, current_data["chat_id"])
-            else:
-                await data_save(reward, current_data["chat_id"])
+        reward = reward_game[random.randint(0, len(reward_game) - 1)]
+        await data_save(reward, user_id)
 
-            print(f"La respuesta: {answer.poll.options[correct_answer]['voter_count']} & 1, son iguales")
-
-
-    print(game_data)
-
-    #answer.option_ids = Option selected by the user
-    #await finishGame(update, context) Game finished
 

@@ -1,7 +1,5 @@
-from generalVariable.constant import CONSTANT
-
 def get_user_data(id_user) -> dict:
-    list_keyword = ["questions_answered", "points"]
+    list_keyword = ["questions_answered", "points", "polls_answered", "quizs_answered"]
     if __name__ == "__main__":
         file_read = open("userData.txt", "rt")
     else:
@@ -10,27 +8,35 @@ def get_user_data(id_user) -> dict:
     txt_read = file_read.read()
     dict_data = {
         "questions_answered": None,
-        "points": None
+        "points": None,
+        "polls_answered": None,
+        "quizs_answered": None,
     }
     # print("A: " + file_read)
-    for keyword in list_keyword:
-        word_to_find = f"{keyword}{id_user}:"
-        keyword_search_len = len(word_to_find)
-        index_found = txt_read.find(word_to_find)
-        cut_from_index = txt_read[index_found:]
-        search_the_come = cut_from_index.find(",")
+    try:
+        for keyword in list_keyword:
+            word_to_find = f"{keyword}{id_user}:"
+            keyword_search_len = len(word_to_find)
+            index_found = txt_read.find(word_to_find)
+            cut_from_index = txt_read[index_found:]
+            search_the_come = cut_from_index.find(",")
 
-        #para obtener recompensa
-        user_data = txt_read[index_found+keyword_search_len: index_found+search_the_come]
-        # print("Recompensa: " + user_data)
-        # print(cut_number)
-        dict_data[keyword] = int(user_data)
+            # para obtener recompensa
+            user_data = txt_read[index_found + keyword_search_len: index_found + search_the_come]
 
-    # print(dict_data)
+            dict_data[keyword] = int(user_data)
+    except ValueError:
+        print("Function call before of: error=ValueError, file: dbData.py")
+
     return dict_data
-# get_user_data(1822798056)
+def set_user_data(id_user, keyword, new_value):
+    if type(keyword) == dict:
+        for key, value in keyword.items():
+            modify_data(id_user, key, value)
+    else:
+        modify_data(id_user, keyword, new_value)
 
-def set_user_data(id_user, keyword, number_data):
+def modify_data(id_user, keyword, new_value):
     if __name__ == "__main__":
         file_read = open("userData.txt", "rt")
     else:
@@ -47,29 +53,11 @@ def set_user_data(id_user, keyword, number_data):
         keyword_search_len = len(word_to_find)
         index_found = info_file.find(word_to_find)
         cut_from_index = info_file[index_found:]
-        cut_text_start = info_file[0:index_found+keyword_search_len]
+        cut_text_start = info_file[0:index_found + keyword_search_len]
         search_the_come = cut_from_index.find(",")
-        cut_text_end = info_file[index_found+search_the_come:]
+        cut_text_end = info_file[index_found + search_the_come:]
 
-        info_to_write_file = f"{cut_text_start}{number_data}{cut_text_end}"
-        # print(info_to_write_file)
+        info_to_write_file = f"{cut_text_start}{new_value}{cut_text_end}"
 
         file_write.write(info_to_write_file)
         file_write.close()
-    else:
-        if __name__ == "__main__":
-            file_append = open("userData.txt", "a")
-        else:
-            file_append = open("game/database/userData.txt", "a")
-
-        add_new_user = f"\nquestions_answered{id_user}:0,\npoints{id_user}:0,"
-        file_append.write(add_new_user)
-        file_append.close()
-
-
-# set_user_data(1822798056, "questions_answered", 1000)
-# set_user_data(1822798056, "points", 111)
-# set_user_data(1822728056, "points", 100)
-# set_user_data(1822728056, "questions_answered", 163)
-# set_user_data(1822798056,"points")
-# set_user_data(1822798056,"questions_answered")
