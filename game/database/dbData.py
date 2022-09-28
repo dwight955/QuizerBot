@@ -1,5 +1,3 @@
-from generalVariable.constant import CONSTANT
-
 def get_user_data(id_user) -> dict:
     list_keyword = ["questions_answered", "points", "polls_answered", "quizs_answered"]
     if __name__ == "__main__":
@@ -12,7 +10,7 @@ def get_user_data(id_user) -> dict:
         "questions_answered": None,
         "points": None,
         "polls_answered": None,
-        "quizs_answered": None
+        "quizs_answered": None,
     }
     # print("A: " + file_read)
     try:
@@ -25,8 +23,7 @@ def get_user_data(id_user) -> dict:
 
             # para obtener recompensa
             user_data = txt_read[index_found + keyword_search_len: index_found + search_the_come]
-            # print("Recompensa: " + user_data)
-            # print(user_data)
+
             dict_data[keyword] = int(user_data)
     except ValueError:
         print("Function call before of: error=ValueError, file: dbData.py")

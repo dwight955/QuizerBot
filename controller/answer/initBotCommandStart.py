@@ -4,7 +4,7 @@ from generalVariable.variable import Variable
 from game.database.dbData import get_user_data
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    id_user = update.effective_chat.id
+    id_user = update.message.chat.id
     if __name__ == "__main__":
         file_read_data = open("userData.txt", "rt")
     else:

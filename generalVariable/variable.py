@@ -1,8 +1,5 @@
-import threading
-
 from telegram import Update
 from telegram.ext import ContextTypes
-from threading import Timer
 class Variable:
     currentContext = {
         "typeGame": "poll",
@@ -19,9 +16,7 @@ class Variable:
             "quiz": 0
         }
     }
-    is_request = False
-    timer = threading
-# print("Reward: " + str(Variable.dataGame["reward"]))
+
 async def set_current_context(typeGame, update, context, chat_id, dict):
     dict["typeGame"] = typeGame
     dict["update"] = update

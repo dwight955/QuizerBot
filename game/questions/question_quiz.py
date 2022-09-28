@@ -1,4 +1,3 @@
-import random
 question_game_quiz = [
     {
         "question": "¿0 CUAL ES LA PREGUNTA?",
@@ -61,5 +60,3 @@ question_game_quiz = [
         "explanation": "Pregunta en el bombillito"
     }
 ]
-# random.shuffle(question_game_quiz)
-# question_game_quiz = question_game_quiz

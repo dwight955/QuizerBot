@@ -1,10 +1,8 @@
 telegram
 __pycache__
-libs
-maincopy.py
 .idea
 tiemp.py
 game/database/userData.txt
 game/database/userReward.txt
-example.py
-test.py
+#game/database/userId.txt
+.venv

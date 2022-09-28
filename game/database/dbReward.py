@@ -1,9 +1,7 @@
-import sys
-from generalVariable.constant import CONSTANT
 async def save_user(id_user) -> bool:
     file = open("game/database/userReward.txt", "rt")
     info_file = file.read()
-    # print("Read: " + info_file)
+
     if str(id_user) not in info_file:
         print("No esta")
         try:
@@ -27,7 +25,6 @@ async def save_user(id_user) -> bool:
 async def data_save(reward, id_user):
     file = open("game/database/userReward.txt", "rt")
     txt = file.read()
-    sizeFile = (sys.getsizeof(txt)-49)
     format_start_index = f"userStart{id_user}:"
     format_end_index = f"userEnd{id_user}:"
     indexStart = txt.find(format_start_index)
