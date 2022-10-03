@@ -38,7 +38,7 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
         await quiz(update=answer, context=context)
 
     elif answer_option == 'random':
-        #En esta condicional se verifica el numero de preguntas respondida por el usuario, y si tanto
+        # En esta condicional se verifica el numero de preguntas respondida por el usuario, y si tanto
         # en el poll o quiz, es menor que el total de preguntas a responder, entonces se selecciona de
         # manera aleatoria una pregunta del poll o quiz
         if (user_data["polls_answered"] < len(question_poll.question_game_poll) and user_data["quizs_answered"] < len(question_quiz.question_game_quiz)):

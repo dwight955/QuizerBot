@@ -6,3 +6,5 @@ game/database/userData.txt
 game/database/userReward.txt
 #game/database/userId.txt
 .venv
+example.py
+test.py

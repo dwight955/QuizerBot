@@ -36,4 +36,3 @@ async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         await context.bot.send_message(update.message.chat.id,
                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
-
