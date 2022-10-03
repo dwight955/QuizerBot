@@ -1,0 +1,38 @@
+from main import *
+from game.questions.question_poll import question_game_poll
+from game.database.dbData import get_user_data
+from game.database.userId import set_user_data_id
+
+async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Sends a predefined poll"""
+
+    # Variable que se encarga de almacenar todos los datos del usuario
+    user_data = get_user_data(update.message.chat.id)
+    # Variable para obtener el numero de pregunta respondida actual
+    poll_answered = user_data["polls_answered"]
+
+    set_user_data_id(str(update.message.chat.id)[0:7], 'id', update.message.chat.id)
+
+    keyboard = [
+        [
+            InlineKeyboardButton("Quiz", callback_data="quiz"),
+            InlineKeyboardButton("Random", callback_data="random"),
+            InlineKeyboardButton("Poll", callback_data="poll"),
+        ],
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    if poll_answered <= (len(question_game_poll)-1):
+        message = await context.bot.send_poll(
+            update.message.chat.id,
+            question_game_poll[poll_answered]["question"],
+            question_game_poll[poll_answered]["options"],
+            is_anonymous=question_game_poll[poll_answered]["voteAnonymous"],
+            allows_multiple_answers=question_game_poll[poll_answered]["allowsMultipleAnswers"],
+            open_period=10,
+            reply_markup=reply_markup,
+        )
+    else:
+        await context.bot.send_message(update.message.chat.id,
+                                       "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")

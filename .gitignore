@@ -1,6 +1,10 @@
-__pycache__
 telegram
-command
-game
-config.py
-maincopy.py
+__pycache__
+.idea
+tiemp.py
+game/database/userData.txt
+game/database/userReward.txt
+#game/database/userId.txt
+.venv
+example.py
+test.py
