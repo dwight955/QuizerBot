@@ -18,11 +18,11 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     set_user_data_id(str(update.message.chat.id)[0:7], 'id', update.message.chat.id)
 
     if quiz_answered <= (len(question_game_quiz) - 1):
+
         keyboard = [
             [
-                InlineKeyboardButton("Quiz", callback_data="quiz"),
-                InlineKeyboardButton("Random", callback_data="random"),
-                InlineKeyboardButton("Poll", callback_data="poll"),
+                InlineKeyboardButton("\u274C", callback_data="finish-quiz"),
+                InlineKeyboardButton("\u27A1", callback_data="next-quiz"),
             ],
         ]
 
