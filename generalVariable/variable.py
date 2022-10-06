@@ -1,27 +1,7 @@
-from telegram import Update
-from telegram.ext import ContextTypes
-class Variable:
-    currentContext = {
-        "typeGame": "poll",
-        "update": Update,
-        "context": ContextTypes.DEFAULT_TYPE,
-        "chat_id": 0,
-        "game_id": 0
-    }
-    gameData = {
-        "points": 0,
-        "reward": [],
-        "gamePlayed": {
-            "poll": 0,
-            "quiz": 0
-        }
-    }
+from game.questions import question_poll, question_quiz
 
-async def set_current_context(typeGame, update, context, chat_id, dict):
-    dict["typeGame"] = typeGame
-    dict["update"] = update
-    dict["context"] = context
-    dict["chat_id"] = chat_id
-    Variable().currentContext["chat_id"] = dict["chat_id"]
+len_question_quiz = len(question_quiz.question_game_quiz)
+len_question_poll = len(question_poll.question_game_poll)
+len_question_total = len_question_poll + len_question_quiz
 
     # print(Variable.currentContext["update"])
