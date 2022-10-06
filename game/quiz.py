@@ -39,10 +39,7 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
         )
     else:
-        '''status_game["noQuestionsQuiz"] = True
-        if status_game["noQuestionsPoll"] and status_game["noQuestionsQuiz"]: await finishGame(update, context)
-        if not status_game["game_finish"]:'''
-        await finishGame(update, context, id_user)
-        await context.bot.send_message(update.message.chat.id,
-                                       "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
+        if not (await finishGame(update, context, id_user)):
+            await context.bot.send_message(update.message.chat.id,
+                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 

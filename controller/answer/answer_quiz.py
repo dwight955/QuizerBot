@@ -4,6 +4,7 @@ from game.questions.question_quiz import question_game_quiz
 from game.database.dbReward import data_save
 from game.database.dbData import (get_user_data, set_user_data)
 import random
+from generalVariable.constant import *
 from game.database.userId import get_user_id
 async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Close quiz after three participants took it"""
@@ -27,7 +28,7 @@ async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     correct_answer = question_game_quiz[dict_get_data_user["quizs_answered"]]["index_correct_answer"]
 
     if answer.poll.options[correct_answer]["voter_count"] == 1:
-        count_win_points = dict_get_data_user["points"] + 5
+        count_win_points = dict_get_data_user["points"] + CONSTANT.GIVE_POINTS
         set_user_data(user_id, "points", count_win_points)
 
         reward = reward_game[random.randint(0, len(reward_game) - 1)]

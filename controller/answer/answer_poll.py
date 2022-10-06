@@ -1,5 +1,6 @@
 from game.questions.question_poll import question_game_poll
 from game.database.dbReward import data_save
+from generalVariable.constant import *
 from main import *
 import random
 from game.database.dbData import (get_user_data, set_user_data)
@@ -26,7 +27,7 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     correct_answer = question_game_poll[dict_get_data_user["quizs_answered"]]["index_correct_answer"]
 
     if answer.option_ids == correct_answer:
-        count_win_points = dict_get_data_user["points"] + 5
+        count_win_points = dict_get_data_user["points"] + CONSTANT.GIVE_POINTS
         set_user_data(id_user, "points", count_win_points)
 
     reward = reward_game[random.randint(0, len(reward_game) - 1)]

@@ -9,7 +9,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # formato del mensaje de Inicio
     msg_welcome = (
         f"Bienvenido *{name}* al juego QuizerBot v.0.1\n\n ¿Listo para responder peguntas?\n\n"
-        "¡Descuida! no son muy complicadas pero tampoco muy faciles 😏\n\n"
+        "¡Descuida! no son muy complicadas pero tampoco muy faciles \u1F60F\n\n"
         "*Modos de juegos*\n> /quiz : Solo preguntas con una sola respuesta\n> /poll : Solo preguntas"
         " con varias respuestas\n> /mixto : Te enviara de manera aleatoria un Quiz o Poll\n*Mas opciones*\n> /creditos : "
         "Conoce un poco mas a los desarrolladores"

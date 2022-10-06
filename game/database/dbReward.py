@@ -41,7 +41,7 @@ async def data_save(reward, id_user):
         file.close()
 def get_user_reward(id_user) -> list:
     try:
-        file = open("../../game/database/userReward.txt", "rt")
+        file = open("game/database/userReward.txt", "rt")
         txt = file.read()
         len_user_reward_start = len(f"userStart{id_user}:")
         format_start_index = f"userStart{id_user}:"
@@ -50,7 +50,6 @@ def get_user_reward(id_user) -> list:
         indexEnd = txt.find(format_end_index)
 
         cutTxtStart = txt[(indexStart + len_user_reward_start+1):(indexEnd-1)]
-        print("Yeah: " + str(cutTxtStart.split("\n")))
     except:
         print("Error al obtener reward del usuario...")
 
