@@ -34,39 +34,4 @@ question_game_poll = [
         "voteAnonymous": False,
         "allowsMultipleAnswers": True
     },
-    {
-        "question": "¿5 CUAL ES LA PREGUNTA?",
-        "options": ["A","B","C","D"],
-        "index_correct_answer": [1,2,3],
-        "voteAnonymous": False,
-        "allowsMultipleAnswers": True
-    },
-    {
-        "question": "¿6 CUAL ES LA PREGUNTA?",
-        "options": ["A","B","C","D"],
-        "index_correct_answer": [1,2,3],
-        "voteAnonymous": False,
-        "allowsMultipleAnswers": True
-    },
-    {
-        "question": "¿7 CUAL ES LA PREGUNTA?",
-        "options": ["A","B","C","D"],
-        "index_correct_answer": [1,2,3],
-        "voteAnonymous": False,
-        "allowsMultipleAnswers": True
-    },
-    {
-        "question": "¿8 CUAL ES LA PREGUNTA?",
-        "options": ["A","B","C","D"],
-        "index_correct_answer": [1,2,3],
-        "voteAnonymous": False,
-        "allowsMultipleAnswers": True
-    },
-    {
-        "question": "¿9 CUAL ES LA PREGUNTA?",
-        "options": ["A","B","C","D"],
-        "index_correct_answer": [1,2,3],
-        "voteAnonymous": False,
-        "allowsMultipleAnswers": True
-    },
 ]

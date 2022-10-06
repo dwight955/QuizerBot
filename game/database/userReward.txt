@@ -1,1 +1,16 @@
-
+userStart1224068050:
+C
+G
+H
+E
+C
+A
+G
+C
+G
+D
+C
+D
+H
+G
+userEnd1224068050:

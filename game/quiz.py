@@ -1,14 +1,17 @@
 import asyncio
+
+from controller.handler.gameFinish import finishGame
 from main import *
 from game.questions.question_quiz import question_game_quiz
 from game.database.dbData import get_user_data
 from game.database.userId import set_user_data_id
+from main import status_game
+
 
 async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Send a predefined poll"""
-
+    id_user = update.message.chat.id
     # Variable que se encarga de almacenar todos los datos del usuario
-    user_data = get_user_data(update.message.chat.id)
+    user_data = get_user_data(id_user)
     # Variable para obtener el numero de pregunta respondida actual
     quiz_answered = user_data["quizs_answered"]
 
@@ -36,6 +39,10 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
         )
     else:
+        '''status_game["noQuestionsQuiz"] = True
+        if status_game["noQuestionsPoll"] and status_game["noQuestionsQuiz"]: await finishGame(update, context)
+        if not status_game["game_finish"]:'''
+        await finishGame(update, context, id_user)
         await context.bot.send_message(update.message.chat.id,
                                        "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 
