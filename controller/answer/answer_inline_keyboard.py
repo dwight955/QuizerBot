@@ -17,7 +17,6 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
     """El answer_option, devuelve el valor que el usuario selecciono, 
        esta puede ser tanto 'quiz', 'random' o 'poll'"""
     # Condicional para enviar un quiz, cuando el callback que se reciba sera 'quiz'
-<<<<<<< HEAD
 
     await update.callback_query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup([[]]))
 
@@ -78,38 +77,12 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                     reply_markup=reply_markup,
                 )
 
-    if answer_option.index('finish') != -1:
+    if answer_option in ('finish-poll', 'finish-quiz'):
         result = 'Resultado'.center(50, '-')
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
                f'Cant. de quiz: *{user_data["quizs_answered"]}/{len_question_quiz}*\nCant. de poll: *{user_data["polls_answered"]}/{len_question_poll}*\n' \
                f'Puntuación total: *{user_data["points"]}*'
         await context.bot.send_message(chat_id=id_user, text=text, parse_mode='Markdown')
-=======
-    if answer_option == 'quiz':
-        await quiz(update=answer, context=context)
-
-    elif answer_option == 'random':
-        # En esta condicional se verifica el numero de preguntas respondida por el usuario, y si tanto
-        # en el poll o quiz, es menor que el total de preguntas a responder, entonces se selecciona de
-        # manera aleatoria una pregunta del poll o quiz
-        if (user_data["polls_answered"] < len(question_poll.question_game_poll) and user_data["quizs_answered"] < len(question_quiz.question_game_quiz)):
-        # num_random se encarga de generar un numero del 0 a 1
-            num_random = random.randint(0, 1)
-        elif user_data["polls_answered"] < len(question_poll.question_game_poll):
-            # si la condicion entra aqui la variable random_question  se encargara de
-            # seleccionar la funcion de la lista [quiz, poll] en el index 1, que corresponde
-            # a la funcion poll.
-            num_random = 1
-        # random_question es una lista donde se almacena las funciones,
-        # para luego ser llamada aleatoriamente
-        # Codigo que se encarga de llamar la funcion para enviarle
-        # al usuario ya sea un quiz o poll
-        await random_question[num_random](answer, context)
-
-    # Condicional para enviar un quiz, cuando el callback que se reciba sera 'poll'
-    elif answer_option == 'poll':
-        await poll(update=answer, context=context)
->>>>>>> 81b881fc0f99544512e50dab131fb337f27be57e
 
     # Para poder editar el mensaje que le enviamos y asi lograr eliminar los botones
     # para evitar que pueda pulsar el Boton de nuevo.
