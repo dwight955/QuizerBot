@@ -1,4 +1,0 @@
-questions_answered1822798056:61,
-points1822798056:150,
-polls_answered1822798056:7,
-quizs_answered1822798056:4,

@@ -15,9 +15,8 @@ async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     keyboard = [
         [
-            InlineKeyboardButton("Quiz", callback_data="quiz"),
-            InlineKeyboardButton("Random", callback_data="random"),
-            InlineKeyboardButton("Poll", callback_data="poll"),
+            InlineKeyboardButton("\u274C", callback_data="finish-poll"),
+            InlineKeyboardButton("\u27A1", callback_data="next-poll"),
         ],
     ]
 

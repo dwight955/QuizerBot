@@ -29,12 +29,15 @@ def get_user_data(id_user) -> dict:
         print("Function call before of: error=ValueError, file: dbData.py")
 
     return dict_data
+
+
 def set_user_data(id_user, keyword, new_value):
     if type(keyword) == dict:
         for key, value in keyword.items():
             modify_data(id_user, key, value)
     else:
         modify_data(id_user, keyword, new_value)
+
 
 def modify_data(id_user, keyword, new_value):
     if __name__ == "__main__":
@@ -61,3 +64,19 @@ def modify_data(id_user, keyword, new_value):
 
         file_write.write(info_to_write_file)
         file_write.close()
+
+
+def save_data(*args: int|str) -> dict:
+    dict_get_data_user = (get_user_data(args[0]))
+
+    count_questions_answered = dict_get_data_user[args[1]] + 1
+    count_answered = dict_get_data_user[args[2]] + 1
+
+    data_to_modify = {
+        args[1]: count_questions_answered,
+        args[2]: count_answered,
+    }
+
+    set_user_data(args[0], data_to_modify, 0)
+
+    return dict_get_data_user
