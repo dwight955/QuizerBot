@@ -34,6 +34,6 @@ async def poll(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             reply_markup=reply_markup,
         )
     else:
-        if not (await finishGame(update, context, id_user)):
+        if not (await finishGame(context, id_user)):
             await context.bot.send_message(update.message.chat.id,
                                            "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")

@@ -3,20 +3,16 @@ from main import *
 from game.database import dbData, dbReward
 from generalVariable import variable, constant
 
-async def finishGame(update, context, id) -> bool:
+async def finishGame(context, id) -> bool:
     data_finish = dbData.get_user_data(id)
-    rewards = dbReward.get_user_reward(id)
-    sRewards = str(rewards).replace("'", "")
     # Total de puntos obtenidos
     get_total_points = data_finish["points"]
     # Total de polls respondidas
     total_polls_answered = data_finish["polls_answered"]
     # Total de quiz respondidas
     total_quiz_answered = data_finish["quizs_answered"]
-
     # Si el total de respondidas es igual al total de polls y quiz
     if total_polls_answered == (variable.len_question_poll) and total_quiz_answered == (variable.len_question_quiz):
-
         # Total de puntos
         total_points = variable.len_question_total * CONSTANT.GIVE_POINTS
         # Porcentaje obtenido de la puntuacion total
@@ -34,6 +30,9 @@ async def finishGame(update, context, id) -> bool:
         else:
             msg_final = "¡GENIAL! Eres lo maximo"
 
+        rewards = dbReward.get_user_reward(id)
+        sRewards = str(rewards).replace("'", "")
+
         mensaje = (
             "* FIN DEL JUEGO *".center(50, '-') +
             "\n\n¡Muchas Gracias por jugar!\n"
@@ -44,5 +43,5 @@ async def finishGame(update, context, id) -> bool:
             f"Cantidad de recompensas obtenidas : \n{sRewards}\n\n"
             f"{msg_final}"
         )
-        await context.bot.send_message(chat_id=update.message.chat_id, text=mensaje, parse_mode="Markdown")
+        await context.bot.send_message(id, text=mensaje, parse_mode="Markdown")
         return True

@@ -5,8 +5,6 @@ from main import *
 from game.questions.question_quiz import question_game_quiz
 from game.database.dbData import get_user_data
 from game.database.userId import set_user_data_id
-from main import status_game
-
 
 async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     id_user = update.message.chat.id
@@ -39,7 +37,7 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
         )
     else:
-        if not (await finishGame(update, context, id_user)):
+        if not (await finishGame(context, id_user)):
             await context.bot.send_message(update.message.chat.id,
                                         "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 

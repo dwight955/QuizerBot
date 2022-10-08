@@ -53,8 +53,9 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
 
                 )
             else:
+                print("caru_quiz")
                 await context.bot.send_message(id_user,
-                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
+                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
         case 'next-poll':
             answers_dude = [y['voter_count'] for y in update.callback_query.message.poll.options]
             if str(answers_dude).find("1") == -1:
@@ -88,11 +89,13 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                     reply_markup=reply_markup,
                 )
             else:
+                print("caru_poll")
                 await context.bot.send_message(id_user,
-                                   "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
+                                   "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
 
     if answer_option in ('finish-poll', 'finish-quiz'):
         result = 'Resultado'.center(50, '-')
+        user_data = get_user_data(id_user)
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
                f'Cant. de quiz: *{user_data["quizs_answered"]}/{len_question_quiz}*\nCant. de poll: *{user_data["polls_answered"]}/{len_question_poll}*\n' \
                f'Puntuación total: *{user_data["points"]}*'
