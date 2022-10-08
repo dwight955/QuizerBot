@@ -92,18 +92,10 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                                    "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 
 
-<<<<<<< feacture/btn_result
-    if answer_option.index('finish') != -1:
-=======
+
     if answer_option in ('finish-poll', 'finish-quiz'):
-        user_data = get_user_data(id_user)
->>>>>>> local
         result = 'Resultado'.center(50, '-')
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
                f'Cant. de quiz: *{user_data["quizs_answered"]}/{len_question_quiz}*\nCant. de poll: *{user_data["polls_answered"]}/{len_question_poll}*\n' \
                f'Puntuación total: *{user_data["points"]}*'
         await context.bot.send_message(chat_id=id_user, text=text, parse_mode='Markdown')
-
-    # Para poder editar el mensaje que le enviamos y asi lograr eliminar los botones
-    # para evitar que pueda pulsar el Boton de nuevo.
-    # await answer.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup([]))
