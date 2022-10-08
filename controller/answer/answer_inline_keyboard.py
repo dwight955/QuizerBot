@@ -89,9 +89,7 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                 )
             else:
                 await context.bot.send_message(id_user,
-                                   "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
-
-
+                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 
     if answer_option in ('finish-poll', 'finish-quiz'):
         result = 'Resultado'.center(50, '-')
