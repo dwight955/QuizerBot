@@ -13,7 +13,7 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     reward_game = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 
-    correct_answer = question_game_poll[dict_get_data_user["quizs_answered"]]["index_correct_answer"]
+    correct_answer = question_game_poll[dict_get_data_user["polls_answered"]]["index_correct_answer"]
 
     if answer.option_ids == correct_answer:
         count_win_points = dict_get_data_user["points"] + 5
