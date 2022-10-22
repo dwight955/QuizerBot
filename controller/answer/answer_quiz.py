@@ -4,6 +4,7 @@ from game.questions.question_quiz import question_game_quiz
 from game.database.dbReward import data_save
 from game.database.dbData import set_user_data, save_data
 import random
+from generalVariable.constant import *
 from game.database.userId import get_user_id
 async def receive_quiz_answer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Close quiz after three participants took it"""

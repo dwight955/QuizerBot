@@ -54,12 +54,9 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                 )
             else:
                 await context.bot.send_message(id_user,
-                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
-        case 'next-poll':
-            answers_dude = [y['voter_count'] for y in update.callback_query.message.poll.options]
-            if str(answers_dude).find("1") == -1:
-                save_data(id_user, "questions_answered", "polls_answered")
+                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
 
+        case 'next-poll':
             user_data = get_user_data(id_user)
 
             # Variable que se encarga de almacenar todos los datos del usuario
@@ -89,11 +86,12 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                 )
             else:
                 await context.bot.send_message(id_user,
-                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
+                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
 
     if answer_option in ('finish-poll', 'finish-quiz'):
         user_data = get_user_data(id_user)
         result = 'Resultado'.center(50, '-')
+        user_data = get_user_data(id_user)
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
                f'Cant. de quiz: *{user_data["quizs_answered"]}/{len_question_quiz}*\nCant. de poll: *{user_data["polls_answered"]}/{len_question_poll}*\n' \
                f'Puntuación total: *{user_data["points"]}*'
