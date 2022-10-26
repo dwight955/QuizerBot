@@ -53,7 +53,6 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
 
                 )
             else:
-                print("caru_quiz")
                 await context.bot.send_message(id_user,
                                                "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
         case 'next-poll':
