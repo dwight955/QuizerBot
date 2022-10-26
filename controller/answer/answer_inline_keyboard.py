@@ -55,11 +55,8 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
             else:
                 await context.bot.send_message(id_user,
                                                "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /poll")
-        case 'next-poll':
-            answers_dude = [y['voter_count'] for y in update.callback_query.message.poll.options]
-            if str(answers_dude).find("1") == -1:
-                save_data(id_user, "questions_answered", "polls_answered")
 
+        case 'next-poll':
             user_data = get_user_data(id_user)
 
             # Variable que se encarga de almacenar todos los datos del usuario
@@ -88,11 +85,11 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
                     reply_markup=reply_markup,
                 )
             else:
-                print("caru_poll")
                 await context.bot.send_message(id_user,
-                                   "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
+                                               "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
 
     if answer_option in ('finish-poll', 'finish-quiz'):
+        user_data = get_user_data(id_user)
         result = 'Resultado'.center(50, '-')
         user_data = get_user_data(id_user)
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
