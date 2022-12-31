@@ -25,7 +25,14 @@ def set_user_data_id(id_user, keyword, new_value):
     if __name__ == "__main__":
         file_read = open("userId.txt", "rt")
     else:
-        file_read = open("game/database/userId.txt", "rt")
+        try:
+            file_read = open("game/database/userId.txt", "rt")
+        except FileNotFoundError:
+            file_read_append = open("game/database/userId.txt", "a") # Crear el si no existe y si existe hacer un append
+            file_read_append.write('') # Aquí se haría el append, pero no sería necesario ya que solo es para crear el archivo.
+            file_read_append.flush()
+            file_read_append.close()
+            file_read = open("game/database/userId.txt", "rt")
 
     info_file = file_read.read()
 
