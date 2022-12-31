@@ -8,3 +8,4 @@ game/database/userReward.txt
 .venv
 example.py
 test.py
+venv/
