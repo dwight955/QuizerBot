@@ -24,6 +24,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             file_read_data = open("game/database/userData.txt", "a")
             file_read_data.flush()
             file_read_data.close()
+            file_read_data = open("game/database/userData.txt", "rt")
 
     info_data = file_read_data.read()
 
