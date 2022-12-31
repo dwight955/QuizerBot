@@ -3,32 +3,38 @@ def get_user_data(id_user) -> dict:
     if __name__ == "__main__":
         file_read = open("userData.txt", "rt")
     else:
-        file_read = open("game/database/userData.txt", "rt")
+        try:
+            file_read = open("game/database/userData.txt", "rt")
 
-    txt_read = file_read.read()
-    dict_data = {
-        "questions_answered": None,
-        "points": None,
-        "polls_answered": None,
-        "quizs_answered": None,
-    }
-    # print("A: " + file_read)
-    try:
-        for keyword in list_keyword:
-            word_to_find = f"{keyword}{id_user}:"
-            keyword_search_len = len(word_to_find)
-            index_found = txt_read.find(word_to_find)
-            cut_from_index = txt_read[index_found:]
-            search_the_come = cut_from_index.find(",")
+            txt_read = file_read.read()
+            dict_data = {
+                "questions_answered": None,
+                "points": None,
+                "polls_answered": None,
+                "quizs_answered": None,
+            }
+            # print("A: " + file_read)
+            try:
+                for keyword in list_keyword:
+                    word_to_find = f"{keyword}{id_user}:"
+                    keyword_search_len = len(word_to_find)
+                    index_found = txt_read.find(word_to_find)
+                    cut_from_index = txt_read[index_found:]
+                    search_the_come = cut_from_index.find(",")
 
-            # para obtener recompensa
-            user_data = txt_read[index_found + keyword_search_len: index_found + search_the_come]
+                    # para obtener recompensa
+                    user_data = txt_read[index_found + keyword_search_len: index_found + search_the_come]
 
-            dict_data[keyword] = int(user_data)
-    except ValueError:
-        print("Function call before of: error=ValueError, file: dbData.py")
+                    dict_data[keyword] = int(user_data)
+            except ValueError:
+                print("Function call before of: error=ValueError, file: dbData.py")
 
-    return dict_data
+            return dict_data
+
+        except FileNotFoundError:
+            file_read_append = open("game/database/userData.txt", "a")
+            file_read_append.flush()
+            file_read_append.close()
 
 
 def set_user_data(id_user, keyword, new_value):

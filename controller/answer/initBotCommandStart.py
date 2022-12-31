@@ -18,7 +18,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if __name__ == "__main__":
         file_read_data = open("userData.txt", "rt")
     else:
-        file_read_data = open("game/database/userData.txt", "rt")
+        try:
+            file_read_data = open("game/database/userData.txt", "rt")
+        except FileNotFoundError:
+            file_read_data = open("game/database/userData.txt", "a")
+            file_read_data.flush()
+            file_read_data.close()
 
     info_data = file_read_data.read()
 
