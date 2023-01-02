@@ -14,7 +14,7 @@ async def credits(update: Update, context: ContextTypes.DEFAULT_TYPE):
         network = ''  # Variable para almacenar las redes sociales de cada develop
         for key, value in credits['network'].items():  # Obteniendo las redes sociales llave valor
             # Creando la estructura de las redes con enlace
-            network += f"       *{str(key).capitalize()}:* [{str(key).capitalize()}]({value})\n"
+            network += f"       *{str(key).capitalize()}:* [{str(credits['name']).capitalize()}]({value})\n"
 
         # Estructura de los creditos de cada develop
         union_credits += f"\n\**{credits['name']}*\n" \
