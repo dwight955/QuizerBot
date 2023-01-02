@@ -49,5 +49,13 @@ async def finishGame(context, id) -> bool:
             f"Recompensas obtenidas : \n {str_emojis} \n\n"
             f"{msg_final}"
         )
-        await context.bot.send_message(id, text=mensaje, parse_mode="Markdown")
+        keyboard = [
+            [
+                InlineKeyboardButton("Restart", callback_data="restart-game"),
+        ],
+        ]
+
+        reply_markup = InlineKeyboardMarkup(keyboard)
+
+        await context.bot.send_message(id, text=mensaje, parse_mode="Markdown",  reply_markup=reply_markup)
         return True

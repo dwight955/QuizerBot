@@ -87,6 +87,15 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
             else:
                 await context.bot.send_message(id_user,
                                                "Lo sentimos ya no hay mas preguntas!\n\nPuede jugar el otro juego\n\n /quiz")
+        case 'restart-game':
+            set_value_default = 0
+            dict_data = {
+                "questions_answered": set_value_default,
+                "points": set_value_default,
+                "polls_answered": set_value_default,
+                "quizs_answered": set_value_default,
+            }
+            set_user_data(id_user, dict_data, set_value_default)
 
     if answer_option in ('finish-poll', 'finish-quiz'):
         user_data = get_user_data(id_user)
@@ -95,4 +104,5 @@ async def receive_inline_keyboard(update: Update, context:ContextTypes.DEFAULT_T
         text = f'*{result}*\n\nCant. de pregunta respondida: *{user_data["questions_answered"]}/{len_question_total}*\n' \
                f'Cant. de quiz: *{user_data["quizs_answered"]}/{len_question_quiz}*\nCant. de poll: *{user_data["polls_answered"]}/{len_question_poll}*\n' \
                f'Puntuación total: *{user_data["points"]}*'
-        await context.bot.send_message(chat_id=id_user, text=text, parse_mode='Markdown')
+
+        await context.bot.send_message(chat_id=id_user, text=text, parse_mode='Markdown',)
