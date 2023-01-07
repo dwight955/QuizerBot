@@ -30,4 +30,4 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if str(id_user) not in info_data:
         await save_user(id_user)
 
-    await context.bot.send_message(chat_id=id_user, text= msg_welcome, parse_mode="Markdown")
+    await context.bot.send_message(chat_id=id_user, text=msg_welcome, parse_mode="Markdown")
